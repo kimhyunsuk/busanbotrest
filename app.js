@@ -23,9 +23,7 @@ var connector = new builder.ChatConnector({
 
 server.post('/api/messages', connector.listen());
 
-var bot = new builder.UniversalBot(connector, function (session) {
-    session.send('안녕하세요!!! 부산광역시 민원센터입니다. 무엇을 도와드릴까요?');
-});
+var bot = new builder.UniversalBot(connector);
 
 var recognizer = new builder.LuisRecognizer("https://westus.api.cognitive.microsoft.com/luis/v2.0/apps/d702153b-695f-4994-85f8-a90d71b8b95f?subscription-key=7489b95cf3fb4797939ea70ce94a4b11");
 bot.recognizer(recognizer);
@@ -33,7 +31,7 @@ bot.recognizer(recognizer);
 // Bots Dialogs
 //=========================================================
 
-
+greeting.create(bot);
 
 var app = express();
 var fs = require('fs');
