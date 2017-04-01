@@ -17,17 +17,14 @@
   <PropertyGroup Condition="'$(Configuration)' == 'Release'" />
   <ItemGroup>
     <Compile Include="app - Copy.js" />
-    <Compile Include="convenienceEng.js" />
-    <Compile Include="designEng.js" />
+    <Compile Include="cat.js" />
+    <Compile Include="child.js" />
+    <Compile Include="class.js" />
+    <Compile Include="employment.js" />
     <Compile Include="greeting.js" />
-    <Compile Include="LuisEnglishServer.js" />
-    <Compile Include="LuisKoreanServer.js" />
-    <Compile Include="designKor.js" />
-    <Compile Include="convenienceKor.js" />
-    <Compile Include="PriceEng.js" />
-    <Compile Include="PriceKor.js" />
-    <Compile Include="testDriveEng.js" />
-    <Compile Include="testDriveKor.js" />
+    <Compile Include="luis.js" />
+    <Compile Include="subway.js" />
+    <Compile Include="trash.js" />
     <Content Include="index.html" />
     <Content Include="package.json" />
     <Compile Include="app.js" />

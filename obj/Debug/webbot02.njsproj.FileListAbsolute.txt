@@ -1,2 +1,4 @@
 C:\Users\TAIHO\Source\Repos\webbot02\obj\Debug\webbot02.njsprojResolveAssemblyReference.cache
 C:\Users\TAIHO\Source\Repos\webbot02\bin\Microsoft.NodejsTools.WebRole.dll
+C:\Users\songhj\Source\Repos\busanbotrest\obj\Debug\webbot02.njsprojResolveAssemblyReference.cache
+C:\Users\songhj\Source\Repos\busanbotrest\bin\Microsoft.NodejsTools.WebRole.dll

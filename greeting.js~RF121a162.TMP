@@ -1,0 +1,151 @@
+﻿var builder = require('botbuilder');
+
+exports.create = function (bot) {
+
+    var title;
+    var recognizer = new builder.LuisRecognizer("https://westus.api.cognitive.microsoft.com/luis/v2.0/apps/d702153b-695f-4994-85f8-a90d71b8b95f?subscription-key=7489b95cf3fb4797939ea70ce94a4b11");
+    bot.recognizer(recognizer);
+
+    var dialog = new builder.IntentDialog({ recognizers: [recognizer] });
+    bot.dialog('/', [
+        function (session,args,next) {
+            session.send("안녕하세요!!! \n 사람과 기술, 문화로 융성하는 부산입니다.\n 저는 부산시의 챗봇'부사니'입니다.\n 생활 관련 궁금 사항은 무엇이든 언제든지 저에게 물어보세요!");
+            builder.Prompts.text(session, "챗봇을 시작하시려면 '시작' 하고 말씀해주세요.");
+        },
+        function (session, results) {
+            var start = results.response;
+
+            if (start == '시작') {
+                session.send("어떤 사항이 궁금하신가요? \n 내용을 직접 말씀해주시면 분석 후 안내해드릴게요");
+                session.send("또한, 챗봇 이용 중 상담원과 직접 대화를 원하시면 언제든지'상담원호출'이라고 말씀해주세요");
+                session.send("그럼, 궁금하신 사항을 말씀해주세요.");
+            } else {
+                session.send("'시작'이라고 말씀해주세요.");
+            }
+        },
+        dialog
+    ]);
+
+    //dialog.onDefault(builder.DialogAction.send("안녕하세요!!! \n 사람과 기술, 문화로 융성하는 부산입니다.\n 저는 부산시의 챗봇'부사니'입니다.\n 생활 관련 궁금 사항은 무엇이든 언제든지 저에게 물어보세요!\n챗봇을 시작하시려면 '시작' 하고 말씀해주세요."));
+    //dialog.matches('QnA', builder.DialogAction.send('고양이'));
+
+    dialog.matches('QnA', [
+        function (session, args, next) {
+            var subject = builder.EntityRecognizer.findEntity(args.entities, '제목');
+            //builder.DialogAction.send(subject.entity);
+
+            if (subject != null) {
+                console.log(subject.entity);
+                switch (subject.entity) {
+                    case '고 양 이':
+                        session.beginDialog('cat');
+                        break;
+                    case '쓰 레 기':
+                        session.beginDialog('trash');
+                        break;
+                    case '취 업':
+                        session.beginDialog('employment');
+                        break;
+                    case '문 화 교 실':
+                        session.beginDialog('class');
+                        break;
+                    case '아 이 돌 봄':
+                        session.beginDialog('child');
+                        break;
+                    case '전 철':
+                        session.beginDialog('subway');
+                        break;
+                    default:
+                        session.beginDialog('other');
+                        break;
+                }
+            } else {
+                session.beginDialog('other');
+            }
+        }
+    ]);
+
+/*
+    bot.dialog('/', [
+        function (session,args,next) {
+            session.send('안녕하세요!!! 부산광역시 민원센터입니다. 무엇을 도와드릴까요?');
+            //session.beginDialog('QnA');
+            next();
+        },
+
+        function (session) {
+            session.send('test2');
+            session.beginDialog('QnA');
+        }
+    ]);
+*/
+    bot.dialog('cat', [
+        function (session, args, next) {
+            session.send('고양이');
+            session.send('어느지역 이시나요?');
+            title = 'cat';
+            next();
+        }
+    ]);
+
+    dialog.matches('AreaRes', [
+        function (session, args, next) {
+            var area = builder.EntityRecognizer.findEntity(args.entities, '지역구');
+
+            if (title != null) {
+                switch (subject.entity) {
+                    case 'cat':
+                        session.send('%s 에 고양이의 수를 줄이기 위해 중성화 업무를 진행하도록 하겠습니다. 감사합니다', area.entity);
+                        break;
+                    case 'employment':
+                        break;
+                }
+            }
+        }
+    ]);
+
+    bot.dialog('trash', [
+        function (session, args, next) {
+            session.send('쓰레기');
+            title = 'trash';
+            next();
+        }
+    ]);
+
+    bot.dialog('employment', [
+        function (session, args, next) {
+            session.send('취업');
+            next();
+        }
+    ]);
+
+    bot.dialog('class', [
+        function (session, args, next) {
+            session.send('문화교실');
+            next();
+        }
+    ]);
+
+    bot.dialog('child', [
+        function (session, args, next) {
+            session.send('아이돌봄');
+            next();
+        }
+    ]);
+
+    bot.dialog('subway', [
+        function (session, args, next) {
+            session.send('전철');
+            next();
+        }
+    ]);
+
+    bot.dialog('other', [
+        function (session) {
+            session.send('질문에 응답 할수 없습니다. 000-000-0000 으로 전화바랍니다.');
+            next();
+        }
+    ]);
+    
+}
+

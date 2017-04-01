@@ -5,10 +5,6 @@ var request = require('request');
 var greeting = require('./greeting');
 var cat = require('./cat');
 var trash = require('./trash');
-var employment = require('./employment');
-var classroom = require('./class');
-var child = require('./child');
-var subway = require('./subway');
 
 //=========================================================
 // Bot Setup
@@ -40,16 +36,19 @@ var bot = new builder.UniversalBot(connector);
 
 global.title = null;
 global.dialogName = null;
-global.local = null;
-global.num = null;
 
 greeting.create(bot);
 cat.create(bot);
 trash.create(bot);
-employment.create(bot);
-classroom.create(bot);
-child.create(bot);
-subway.create(bot);
+//bot.dialog('cat', require('./cat'));
+
+/*dialog.matches('builtin.intent.alarm.set_alarm', [
+    function (session, args, next) {
+        var title = builder.EntityRecognizer.findEntity(args.entities, 'builtin.alarm.title');
+
+    }
+]);*/
+
 
 var app = express();
 var fs = require('fs');
