@@ -24,10 +24,10 @@ console.log('%s listening to %s (%s)', server.name, server.url, botenv);
 
 // Create chat bot
 var connector = new builder.ChatConnector({
-    //appId: process.env.MICROSOFT_APP_ID,
-    //appPassword: process.env.MICROSOFT_APP_PASSWORD
-    appId: '608800dd-78ff-4ca9-b03f-468ab616acb2',
-    appPassword: 'zoiQPdzGCFL2RciT8We2XD0'
+    appId: process.env.MICROSOFT_APP_ID,
+    appPassword: process.env.MICROSOFT_APP_PASSWORD
+    //appId: '608800dd-78ff-4ca9-b03f-468ab616acb2',
+    //appPassword: 'zoiQPdzGCFL2RciT8We2XD0'
 });
 
 server.post('/api/messages', connector.listen());
