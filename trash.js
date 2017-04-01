@@ -46,6 +46,9 @@ exports.create = function (bot) {
                 if (res == '다시') {
                     session.beginDialog('trashDay');
                 } else {
+                    local = res;
+                    session.beginDialog('trashArea');
+                    /*
                     return luis.query(res)
                         .then(luisResult => {
                             intent = luisResult.topScoringIntent.intent;
@@ -59,6 +62,7 @@ exports.create = function (bot) {
                         .catch(err => {
                             return session.beginDialog('other');
                         });
+                    */
                 }
             }
         }
