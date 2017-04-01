@@ -27,7 +27,7 @@ exports.create = function (bot) {
                 } else if (res.indexOf("중성화") != -1) {
                     session.beginDialog('catNeutral');
                 } else {
-                    next();
+                    session.beginDialog('cat');
                 }
             }
         }
