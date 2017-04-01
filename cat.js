@@ -48,6 +48,9 @@ exports.create = function (bot) {
                 if (res == '다시') {
                     session.beginDialog('catReport');
                 } else {
+                    local = res
+                    session.beginDialog('catArea');
+                    /*
                     return luis.query(res)
                         .then(luisResult => {
                             intent = luisResult.topScoringIntent.intent;
@@ -61,22 +64,13 @@ exports.create = function (bot) {
                         .catch(err => {
                             return session.beginDialog('other');
                         });
+                    */
                 }
             }
         }
 
     ]);
 
-/*
-    bot.dialog('catReport', [
-        function (session, args, next) {
-            session.send("길고양이 신고가 궁금하시군요? 길고양이가 발견되는 대략적인 지역 주소를 말씀해주시면 담당 부처에서 실사 후 조치하도록 하겠습니다.");
-            session.send("다시 들으시려면, '다시'라고 말씀해주세요");
-            global.dialogName = "catReport";
-            next();
-        }
-    ]);
-*/
     bot.dialog('catNeutral', [
         function (session, args, next) {
             session.send("길고양이 중성과 사업 안내를 해드리겠습니다. 본 사업은 길고양이를 포획하여 중성화수술 후 원래 자리에 풀어줌으로서 번식력을 낮춰 장기적으로 수를 줄어들게 하고");
@@ -92,7 +86,7 @@ exports.create = function (bot) {
                 } else if (res == '해결') {
                     session.beginDialog('solution');
                 } else {
-                    session.beginDialog('other');
+                    session.beginDialog('catNeutral');
                 }
             }
         }
@@ -111,7 +105,7 @@ exports.create = function (bot) {
                 } else if (res == '해결') {
                     session.beginDialog('solution');
                 } else {
-                    session.beginDialog('other');
+                    session.beginDialog('catArea');
                 }
             }
         }
