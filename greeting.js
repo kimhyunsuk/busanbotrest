@@ -239,6 +239,27 @@ exports.create = function (bot) {
         }
     ]);
 
+    dialog.matches('Command', [
+        function (session, args, next) {
+            var start = builder.EntityRecognizer.findEntity(args.entities, '명령');
+
+            if (start != null) {
+                var command = start.entity
+                switch (command) {
+                    case '종 료':
+                        session.send("만족스러운 안내가 되셨나요? 부산 시민분들의 행복을 위해 언제나 최선을 다하는 챗봇 '부사니' 였습니다.");
+                        session.send("앞으로도 궁금하신 사항이 있으시면 언제든지 저를 찾아주세요. 그럼 오늘도 행복한 하루 되세요. 감사합니다.");
+                        session.endDialog();
+                        break;
+                    default:
+                        break;
+                }
+            }
+        }
+    ]);
+
+
+
     bot.dialog('other', [
         function (session, args, next) {
             session.send('질문에 응답 할수 없습니다. 000-000-0000 으로 전화바랍니다.');
