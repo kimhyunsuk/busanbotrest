@@ -17,8 +17,8 @@ var subway = require('./subway');
 // Setup Restify Server
 var server = restify.createServer();
 var botenv = process.env.BOT_ENV;
-//server.listen(process.env.port || process.env.PORT || 3978, function () {
-server.listen(3978, function () {
+server.listen(process.env.port || process.env.PORT || 3978, function () {
+//server.listen(3978, function () {
 console.log('%s listening to %s (%s)', server.name, server.url, botenv);
 });
 
@@ -38,10 +38,6 @@ var bot = new builder.UniversalBot(connector);
 // Bots Dialogs
 //=========================================================
 
-global.title = null;
-global.dialogName = null;
-global.local = null;
-global.num = null;
 
 greeting.create(bot);
 cat.create(bot);
@@ -59,12 +55,12 @@ app.listen(3303, function () {
 });
 
 app.get('/', function (req, res) {
-/*	fs.readFile('index.html', function (error, data) {
+	fs.readFile('index.html', function (error, data) {
 		if (error) {
 			console.log(error);
 		} else {
 			res.writeHead(200, { 'Content-Type': 'text/html' });
 			res.end(data);
 		} 
-	});*/
+	});
 });
