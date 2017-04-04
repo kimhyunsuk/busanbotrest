@@ -15,7 +15,7 @@ exports.create = function (bot) {
 
     bot.dialog('greeting', [
         function (session, args, next) {
-            session.send("안녕하세요!!! \n 사람과 기술, 문화로 융성하는 부산입니다.\n 저는 부산시의 챗봇'부사니'입니다.\n 생활 관련 궁금 사항은 무엇이든 언제든지 저에게 물어보세요!");
+            session.send("안녕하세요!!! \n\n 사람과 기술, 문화로 융성하는 부산입니다.\n\n 저는 부산시의 챗봇'부사니'입니다.\n\n 생활 관련 궁금 사항은 무엇이든 언제든지 저에게 물어보세요!");
             session.beginDialog('start');
         }
     ]);
