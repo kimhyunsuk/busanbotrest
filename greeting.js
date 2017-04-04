@@ -3,7 +3,7 @@ var luis = require('./luis');
 
 exports.create = function (bot) {
 
-    var recognizer = new builder.LuisRecognizer("https://westus.api.cognitive.microsoft.com/luis/v2.0/apps/d702153b-695f-4994-85f8-a90d71b8b95f?subscription-key=7489b95cf3fb4797939ea70ce94a4b11");
+    var recognizer = new builder.LuisRecognizer("https://westus.api.cognitive.microsoft.com/luis/v2.0/apps/d702153b-695f-4994-85f8-a90d71b8b95f?subscription-key=9fed2fd1ec614cb58ae1989302151d13");
     bot.recognizer(recognizer);
     var dialog = new builder.IntentDialog({ recognizers: [recognizer] });
 
@@ -143,9 +143,9 @@ exports.create = function (bot) {
 
     bot.dialog('startMessage', [
         function (session, args, next) {
-            session.send("어떤 사항이 궁금하신가요? \n 내용을 직접 말씀해주시면 분석 후 안내해드릴게요");
-            session.send("또한, 챗봇 이용 중 상담원과 직접 대화를 원하시면 언제든지'상담원호출'이라고 말씀해주세요");
-            builder.Prompts.text(session, "그럼, 궁금하신 사항을 말씀해주세요.");
+            builder.Prompts.text(session, "어떤 사항이 궁금하신가요? \n\n 내용을 직접 말씀해주시면 분석 후 안내해드릴게요" +
+                "\n\n또한, 챗봇 이용 중 상담원과 직접 대화를 원하시면 언제든지\n\n'상담원호출'이라고 말씀해주세요" +
+                "\n\n그럼, 궁금하신 사항을 말씀해주세요.");
         },
         function (session, results, next) {
             var res = results.response;
@@ -200,8 +200,8 @@ exports.create = function (bot) {
 
     bot.dialog('solution', [
         function (session, args, next) {
-            session.send("궁금하신 내용에 대해 해결이 되셨군요! 또 다른 궁금하신 사항이 있으시면 다시 내용을 말씀해주세요.");
-            session.send("또한, 챗봇과의 통화를 종료하시려면 '종료' 라고 말씀하시거나 전화를 끊으시면 됩니다.");
+            session.send("궁금하신 내용에 대해 해결이 되셨군요! \n\n 또 다른 궁금하신 사항이 있으시면 다시 내용을 말씀해주세요."
+                + "\n\n또한, 챗봇과의 통화를 종료하시려면 '종료' 라고 말씀하시거나 전화를 끊으시면 됩니다.");
             next();
         }
     ]);
@@ -252,8 +252,8 @@ exports.create = function (bot) {
                 var command = start.entity
                 switch (command) {
                     case '종 료':
-                        session.send("만족스러운 안내가 되셨나요? 부산 시민분들의 행복을 위해 언제나 최선을 다하는 챗봇 '부사니' 였습니다.");
-                        session.send("앞으로도 궁금하신 사항이 있으시면 언제든지 저를 찾아주세요. 그럼 오늘도 행복한 하루 되세요. 감사합니다.");
+                        session.send("만족스러운 안내가 되셨나요? \n\n부산 시민분들의 행복을 위해 언제나 최선을 다하는 챗봇 '부사니' 였습니다."
+                            + "앞으로도 궁금하신 사항이 있으시면 언제든지 저를 찾아주세요. \n\n 그럼 오늘도 행복한 하루 되세요. 감사합니다.");
                         session.endDialog();
                         break;
                     default:

@@ -8,13 +8,11 @@ exports.create = function (bot) {
     bot.dialog('cat', [
         function (session) {
 
-            session.send("길고양이 문제로 불편을 겪고 계시는군요");
-            session.send("[길고양이 신고]");
-            session.send("[길고양이 중성화 안내] 중에서");
-            session.send("원하시는 내용을 말씀해주시면 자세히 안내를 해드릴께요.");
-
-            builder.Prompts.text(session, "다시 들으시려면, '다시'라고 말씀해주세요");
-            global.title = 'cat';
+            builder.Prompts.text(session, "길고양이 문제로 불편을 겪고 계시는군요\n\n" +
+                "[길고양이 신고]\n\n" +
+                "[길고양이 중성화 안내] 중에서\n\n" +
+                "원하시는 내용을 말씀해주시면 자세히 안내를 해드릴께요.\n\n" +
+                "다시 들으시려면, '다시'라고 말씀해주세요");
         },
         function (session, results, next) {
             var res = results.response;
@@ -36,8 +34,8 @@ exports.create = function (bot) {
 
     bot.dialog('catReport', [
         function (session, args, next) {
-            session.send("길고양이 신고가 궁금하시군요? 길고양이가 발견되는 대략적인 지역 주소를 말씀해주시면 담당 부처에서 실사 후 조치하도록 하겠습니다.");
-            builder.Prompts.text(session, "다시 들으시려면, '다시'라고 말씀해주세요");
+            builder.Prompts.text(session, "길고양이 신고가 궁금하시군요? \n\n 길고양이가 발견되는 대략적인 지역 주소를 말씀해주시면\n\n 담당 부처에서 실사 후 조치하도록 하겠습니다.\n\n"
+                + "다시 들으시려면, '다시'라고 말씀해주세요");
         },
         function (session, results, next) {
             var res = results.response;
@@ -73,10 +71,10 @@ exports.create = function (bot) {
 
     bot.dialog('catNeutral', [
         function (session, args, next) {
-            session.send("길고양이 중성과 사업 안내를 해드리겠습니다. 본 사업은 길고양이를 포획하여 중성화수술 후 원래 자리에 풀어줌으로서 번식력을 낮춰 장기적으로 수를 줄어들게 하고");
-            session.send("번식기 동안 울음소리를 사라지게 하여 시민들의 불펴을 줄여주는 사업입니다.");
-            session.send("보다 자세한 내용은 '동물보호관리시스템' 홈페이지에서 확인하실 수 있습니다.");
-            builder.Prompts.text(session, "다시 들으시려면, '다시' 궁금증이 해결되었으면 '해결'이라고 말씀해주세요.");
+            builder.Prompts.text(session, "길고양이 중성과 사업 안내를 해드리겠습니다. \n\n 본 사업은 길고양이를 포획하여 중성화수술 후 원래 자리에 풀어줌으로서 번식력을 낮춰 장기적으로 수를 줄어들게 하고"
+                + "\n\n번식기 동안 울음소리를 사라지게 하여 시민들의 불펴을 줄여주는 사업입니다."
+                + "\n\n보다 자세한 내용은 '동물보호관리시스템' 홈페이지에서 확인하실 수 있습니다."
+                + "\n\n다시 들으시려면, '다시' 궁금증이 해결되었으면 '해결'이라고 말씀해주세요.");
         },
         function (session, results, next) {
             var res = results.response;
@@ -94,7 +92,7 @@ exports.create = function (bot) {
 
     bot.dialog('catArea', [
         function (session, args, next) {
-            session.send('부산시 %s 지역이시군요. 해당 지역에 대한 실사를 2일 내에 실시 하겠으며, 포획되는 길고양이는 일정 기간 공고 후 입양 또는 중성화 조치됨을 알려드립니다.', local);
+            session.send('부산시 %s 지역이시군요. \n\n 해당 지역에 대한 실사를 2일 내에 실시 하겠으며, \n\n포획되는 길고양이는 일정 기간 공고 후 입양 또는 중성화 조치됨을 알려드립니다.', local);
             builder.Prompts.text(session, "다시 들으시려면, '다시' 궁금증이 해결되었으면 '해결' 이라고 말씀해주세요.");
         },
         function (session, results, next) {
