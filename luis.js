@@ -3,7 +3,7 @@ var util = require('util');
 
 
 // replace LUIS endpoint with your own 
-var luisEndpoint = 'https://westus.api.cognitive.microsoft.com/luis/v2.0/apps/d702153b-695f-4994-85f8-a90d71b8b95f?subscription-key=7489b95cf3fb4797939ea70ce94a4b11&verbose=true';
+var luisEndpoint = 'https://westus.api.cognitive.microsoft.com/luis/v2.0/apps/d702153b-695f-4994-85f8-a90d71b8b95f?subscription-key=9fed2fd1ec614cb58ae1989302151d13&timezoneOffset=0.0&verbose=true';
 var luisUrlTemplate = `${luisEndpoint}&q=%s`;
 
 function query(text) {
