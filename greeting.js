@@ -7,12 +7,11 @@ exports.create = function (bot) {
     bot.recognizer(recognizer);
     var dialog = new builder.IntentDialog({ recognizers: [recognizer] });
 
+    console.log("Start Server1");
+    
     bot.dialog('/', dialog);
     
-    dialog.onBegin(function (session, args, next) {
-        session.send("Hirung ");
-        next();
-    });
+    console.log("Start Server2");
     
     dialog.onDefault(session => {
         session.beginDialog('greeting');
@@ -24,7 +23,8 @@ exports.create = function (bot) {
             session.beginDialog('start');
         }
     ]);
-
+    
+    console.log("Start Server3");
     /*
     dialog.matches('Command', [
         function (session, args, next) {
