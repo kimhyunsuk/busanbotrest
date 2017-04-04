@@ -8,7 +8,12 @@ exports.create = function (bot) {
     var dialog = new builder.IntentDialog({ recognizers: [recognizer] });
 
     bot.dialog('/', dialog);
-
+    
+    dialog.onBegin(function (session, args, next) {
+        session.send("Hirung ");
+        next();
+    });
+    
     dialog.onDefault(session => {
         session.beginDialog('greeting');
     });
