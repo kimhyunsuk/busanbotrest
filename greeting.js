@@ -18,28 +18,7 @@ exports.create = function (bot) {
     });
 
     bot.dialog('greeting', [
-        function (session, args, next) {
-            var msg = new builder.Message(session)
-                .attachments([
-                    new builder.VideoCard(session)
-                        .title('그랜다이저')
-                        .autostart(true)
-                        .subtitle('Grandizer')
-                        .text("안녕하세요. 저는 현대자동차의 그랜저 ig를 소개하는 그랜다이저예요. \n\n 대화중 언제든지'그랜다이저' 라고 입력하면 초기 화면으로 돌아가요. \n\n Hi. My name is Grandizer. \n\n At any time, type 'Grandizer' to return to the initial screen. ")
-                        //.images([
-                        //    builder.CardImage.create(session, img_path + "/images/img_car01.jpg")
-                        //])
-                        .media([
-                            { url: 'https://archive.org/download/BigBuckBunny_328/BigBuckBunny_512kb.mp4' }
-                        ])
-                        .buttons([
-                            builder.CardAction.imBack(session, "한국어로 해줘", "한국어"),
-                            builder.CardAction.imBack(session, "hey there", "English")
-                        ])
-                ]);
-
-            session.send(msg);
-            
+        function (session, args, next) {            
             session.send("안녕하세요!!! \n\n 사람과 기술, 문화로 융성하는 부산입니다.\n\n 저는 부산시의 챗봇'부사니'입니다.\n\n 생활 관련 궁금 사항은 무엇이든 언제든지 저에게 물어보세요!");
             session.beginDialog('start');
         }
@@ -148,6 +127,27 @@ exports.create = function (bot) {
 
     bot.dialog('start', [
         function (session,args,next) {
+            var msg = new builder.Message(session)
+                .attachments([
+                    new builder.VideoCard(session)
+                        .title('그랜다이저')
+                        .autostart(true)
+                        .subtitle('Grandizer')
+                        .text("안녕하세요. 저는 현대자동차의 그랜저 ig를 소개하는 그랜다이저예요. \n\n 대화중 언제든지'그랜다이저' 라고 입력하면 초기 화면으로 돌아가요. \n\n Hi. My name is Grandizer. \n\n At any time, type 'Grandizer' to return to the initial screen. ")
+                        //.images([
+                        //    builder.CardImage.create(session, img_path + "/images/img_car01.jpg")
+                        //])
+                        .media([
+                            { url: 'https://archive.org/download/BigBuckBunny_328/BigBuckBunny_512kb.mp4' }
+                        ])
+                        .buttons([
+                            builder.CardAction.imBack(session, "한국어로 해줘", "한국어"),
+                            builder.CardAction.imBack(session, "hey there", "English")
+                        ])
+                ]);
+
+            session.send(msg);
+            
             builder.Prompts.text(session, "챗봇을 시작하시려면 '시작' 하고 말씀해주세요.");
         },
         function (session, results, next) {
