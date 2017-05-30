@@ -138,7 +138,7 @@ exports.create = function (bot) {
                         //    builder.CardImage.create(session, img_path + "/images/img_car01.jpg")
                         //])
                         .media([
-                            { url: 'https://youtu.be/VQtonf1fv_s?list=PLNSKpl7JCPswwj_fWkfixq5L7QeZJA4Ot' }
+                            { url: 'https://youtu.be/3nzFfOBOMKE' }
                         ])
                         .buttons([
                             builder.CardAction.imBack(session, "한국어로 해줘", "한국어"),
